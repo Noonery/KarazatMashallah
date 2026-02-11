@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<title>كرزات ما شاء الله | قائمة الأسعار</title>
+<title>كرزات ماشاء الله</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
@@ -12,24 +12,39 @@
 
 <div id="loader">
     <div class="loader-content">
-        <h1 class="loader-text">كرزات ما شاء الله</h1>
-        <div class="loader-bar"></div>
+        <div class="loader-logo-wrap">
+            <h1 class="loader-text">كرزات ما شاء الله</h1>
+            <div class="loader-shine"></div>
+        </div>
+        
+        <div class="loader-percentage" id="load-pc">0%</div>
+        
+        <div class="loader-bar-container">
+            <div class="loader-bar-progress" id="load-bar"></div>
+        </div>
+        
+        <p class="loader-sub">جاري تحميص أفضل المكسرات...</p>
     </div>
 </div>
 
+
 <!-- Navbar -->
 <nav class="navbar">
-  <div class="logo">
+  <div class="nav-main-row">
+    <div class="logo">
       <div class="logo-text-container"> 
-        <h1 class="brand-name">كرزات ما شاء الله</h1>
+        <h1 class="brand-name">كرزات ماشاء الله</h1>
         <span class="sub-text">أجود المكسرات الطازجة يومياً</span>
+      </div>
+      <img src="logo.png" class="logo-img" alt="لوغو كرزات ماشاء الله">
     </div>
-    <img src="logo.png" class="logo-img" alt="لوغو كرزات ماشاء الله">
-</div>
-  <div class="nav-right">
-    <input type="text" id="search" placeholder="ابحث عن صنف...">
+    
+    <div class="nav-right">
+      <input type="text" id="search" placeholder="ابحث عن صنف...">
+    </div>
   </div>
 </nav>
+
 
 <!-- Hero -->
 <section class="hero">

@@ -41,10 +41,10 @@ window.addEventListener("load", async function() {
 });
 
 const productsData = [
-    {name:"حب عباد الشمس", price:6000, img:"images/seeds.jpg", desc:"اجواد انواع الحب لدينا"},
-    {name:"فستق حلبي (مملح)", price:18000, img:"images/pistachio1.jpg", desc:"فستق حلبي (مملح) موصلي ذات طعم رهيب"},
-    {name:"فستق حلبي (حامض)", price:11000, img:"images/pistachio2.jpg", desc:"فستق حلبي (حامض) موصلي ذات حموضة جيدة"},
-    {name:"كاجو محمص", price:12000, img:"images/cashew.jpg", desc:"كاجو محمص طازج، طعمه لذيذ وشهي"}
+    {name:"حَب عباد الشمس", price:6000, img:"images/seeds.jpg", desc:"محمص طازج ومقرمش، مثالي للتسلية"},
+    {name:"فستق حلبي (مملح)", price:18000, img:"images/pistachio1.jpg", desc:"فستق فاخر بطعم متوازن ولذيذ"},
+    {name:"فستق حلبي (حامض)", price:18000, img:"images/pistachio2.jpg", desc:"نكهة حامضة منعشة تفتح النفس"},
+    {name:"كاجو محمص", price:16000, img:"images/cashew.jpg", desc:"كاجو محمص طازج، طعمه لذيذ وسلس"}
 ];
 
 const productsEl = document.getElementById("products");
@@ -91,10 +91,24 @@ function openCall() {
 // التحميل الأولي
 renderProducts(productsData);
 
-window.addEventListener("load", function() {
-    const loader = document.getElementById("loader");
-    // ننتظر ثانية واحدة إضافية لإعطاء طابع الفخامة ثم نخفيه
-    setTimeout(() => {
-        loader.classList.add("loader-hidden");
-    }, 1000); 
+window.addEventListener('load', function() {
+    let progress = 0;
+    const bar = document.getElementById('load-bar');
+    const pc = document.getElementById('load-pc');
+    const loader = document.getElementById('loader');
+
+    const interval = setInterval(() => {
+        progress += Math.floor(Math.random() * 10) + 1; // زيادة عشوائية
+        if (progress >= 100) {
+            progress = 100;
+            clearInterval(interval);
+            
+            // إخفاء اللودر بعد اكتمال التحميل
+            setTimeout(() => {
+                loader.classList.add('loader-hidden');
+            }, 500);
+        }
+        bar.style.width = progress + '%';
+        pc.innerText = progress + '%';
+    }, 100);
 });
