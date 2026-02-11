@@ -1,0 +1,583 @@
+/* استيراد خط القاهرة بشكل صحيح */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap');
+
+:root {
+    --primary-color: #3e2723;
+    --accent-color: #d4af37;
+    --bg-color: #f4f1ee;
+    --card-bg: #ffffff;
+    --text-main: #2d1b18;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Cairo', sans-serif;
+    background: linear-gradient(180deg, #3d2b1f 0%, #fdfcfb 40%, #f5eee6 100%);
+    background-attachment: fixed;/* يخلي الخلفية ثابتة والكاردات تتحرك فوقها */
+    margin: 0;
+    padding: 0;
+}
+
+/* الحاوية للنصوص في الهيدر */
+.logo-text-container {
+    display: flex;
+    flex-direction: column; /* هذا السطر هو السر */
+    justify-content: center;
+    align-items: flex-start; 
+    gap: 2px;
+}
+
+.brand-name {
+    background: linear-gradient(90deg, #d4af37, #fff5d7, #d4af37);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: goldShine 3s linear infinite;
+    font-size: 1.6rem; /* حجم مناسب للفخامة */
+    line-height: 1.1;  /* يمنع تباعد السطرين عن بعض */
+    margin: 0;
+    font-weight: 900;
+}
+
+.sub-text {
+    font-size: 0.8rem;
+    color: #e0d5c1; /* لون حليبي فاتح جداً للنص الفرعي */
+    opacity: 0.9;
+    margin-top: -2px;
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+/* حركة اللمعان */
+@keyframes goldShine {
+    to { background-position: 200% center; }
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 5%;
+    background: rgba(62, 39, 35, 0.98);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    height: 80px;
+}
+
+
+.navbar input {
+    padding: 8px 15px;
+    border-radius: 20px;
+    border: 1px solid var(--accent-color);
+    background: #6d4c41;
+    color: white;
+    width: 280px;
+    transition: 0.4s;
+    outine: none;
+    border-color: #fff;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.4); /* توهج ذهبي */
+}
+
+.navbar input::placeholder { color: #ccc; }
+.navbar input:focus { width: 280px; outline: none; background: #6d4c41; }
+
+@media (max-width: 600px){
+    .navbar input {
+        width: 150px;
+    }
+}
+
+/* تنسيق الهيدر */
+.header-content {
+    display: flex;
+    flex-direction: column; /* يخلي النص تحت بعض */
+    align-items: flex-end; /* يحاذيهم لجهة اللوجو */
+    gap: 5px;
+}
+
+/* --- Hero Section المحدث --- */
+.hero {
+    position: relative;
+    height: 450px; /* ارتفاع افتراضي للكمبيوتر */
+    background: linear-gradient(45deg, rgba(62, 39, 35, 0.7), rgba(0, 0, 0, 0.4)), 
+                url('https://images.unsplash.com/photo-1536620453301-4ee56663273c?auto=format&fit=crop&w=1470&q=80') center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* عشان الضوء ما يطلع برا */
+}
+
+/* إضافة هالة ضوئية خلف النص */
+.hero::before {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.2) 0%, rgba(212, 175, 55, 0) 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+/* --- Hero Overlay المصلح (الزجاجي الصغير مع اللمعان) --- */
+.hero-overlay {
+    position: relative;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 20px 40px; 
+    border-radius: 15px; 
+    
+    text-align: center;
+    max-width: 600px; 
+    margin: 0 auto;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    overflow: hidden; /* ضروري جداً لظهور اللمعان داخله فقط */
+}
+
+/* تأثير الضوء اللامع المتحرك */
+.hero-overlay::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -100%; /* يبدأ من أبعد قليلاً */
+    width: 30%; /* عرض الضوء */
+    height: 200%;
+    background: linear-gradient(
+        to right, 
+        rgba(255,255,255,0) 0%, 
+        rgba(255,255,255,0.3) 50%, 
+        rgba(255,255,255,0) 100%
+    );
+    transform: rotate(25deg);
+    animation: shine 3s infinite ease-in-out;
+}
+
+@keyframes shine {
+    0% { left: -100%; }
+    40% { left: 150%; }
+    100% { left: 150%; }
+}
+
+/* --- تنسيق النصوص داخل الهيرو --- */
+.hero h1 {
+    font-size: 2.2rem;
+    color: #d4af37;
+    margin-bottom: 8px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.hero-desc {
+    font-size: 1.1rem;
+    color: #f4e1b3;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.hero-subdesc {
+    color: #e0d8d2;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+.hero-line {
+    width: 50px;
+    height: 2px;
+    background: #d4af37;
+    margin: 15px auto;
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+}
+
+/* --- تحسين للشاشات المتوسطة والكبيرة --- */
+@media (min-width: 768px) {
+    .hero-subdesc {
+        display: block;
+        font-size: 0.9rem;
+        opacity: 0.8;
+    }
+}
+
+/* --- تحسين التناسق للشاشات الصغيرة (<600px) --- */
+@media (max-width: 600px) {
+    .hero {
+        height: auto; /* ارتفاع مرن */
+        padding: 60px 15px;
+        flex-direction: column;
+    }
+
+    .hero-overlay {
+        padding: 15px 20px;
+        max-width: 90%;
+    }
+
+    .hero h1 {
+        font-size: 1.8rem;
+        line-height: 1.2;
+    }
+
+    .hero-desc,
+    .hero-subdesc {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+
+    .hero-line {
+        width: 40px;
+        height: 2px;
+    }
+}
+
+/* Products Grid */
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 30px;
+    padding: 40px 5%;
+}
+
+/* --- تفاصيل الشعار + اللوغو --- */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* المسافة بين الصورة والنص */
+    font-weight: 700;
+    color: #d4af37;
+    direction: rtl; 
+}
+
+.logo-img {
+    width: 60px; /* كبّرناه شوية عشان يوضح اللوك الجديد */
+    height: 60px;
+    border-radius: 50%; /* دائرة كاملة */
+    object-fit: cover; /* يمنع تمطط الصورة */
+    border: 2px solid #d4af37; /* برواز ذهبي يطابق اللمعان */
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.3); /* توهج خفيف */
+    transition: transform 0.3s ease;
+}
+
+/* حركة بسيطة لما تلمس اللوجو */
+.logo-img:hover {
+    transform: rotate(10deg) scale(1.1);
+}
+
+
+/* --- تفاصيل المنتج المحدثة --- */
+.card {
+    background: var(--card-bg);
+    /* حواف دائرية متناسقة */
+    border-radius: 20px;
+    overflow: hidden;
+    /* حواف بلون بني فاتح هادئ */
+    border: 1.5px solid #d7ccc8; 
+    box-shadow: 0 8px 15px rgba(0,0,0,0.03);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* حركة انسيابية مرنة */
+    text-align: center;
+    position: relative;
+}
+
+/* --- تأثير الهوفر (اللمسة السحرية) --- */
+.card:hover {
+    transform: translateY(-12px) scale(1.02); /* ترتفع وتكبر قليلاً */
+    /* الحواف تصبح أغمق قليلاً عند الهوفر */
+    border-color: #a1887f; 
+    /* ظل أعمق يعطي إيحاء بالارتفاع */
+    box-shadow: 0 20px 40px rgba(161, 136, 127, 0.2); 
+}
+
+.card img { 
+    width: 128px; 
+    height: 128px; 
+    object-fit: cover; 
+    border-radius: 15px; 
+    border: 2px solid #d4af37; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+    display: block;
+    margin: 10px auto 0; /* النزول 10px عن أعلى الكارد */
+    /* أو بديل: transform: translateY(10px); */
+}
+
+.card-content { 
+    padding: 20px; 
+}
+
+.card h3 { 
+    margin-bottom: 10px; 
+    font-size: 1.3rem; 
+    color: #5d4037; /* بني داكن للنصوص */
+}
+
+.card .desc { 
+    font-size: 0.9rem;
+    color: #8d6e63; /* بني متوسط للوصف */
+    margin-bottom: 15px; 
+    height: 40px; 
+}
+
+.card .price { 
+    display: inline-block;
+    background: #efebe9; /* خلفية بني فاتح جداً للسعر */
+    color: #4e342e; /* لون نص بني غامق */
+    font-weight: 700;
+    padding: 8px 20px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    border: 1px solid #d7ccc8;
+    transition: background 0.3s ease;
+}
+
+/* تغيير لون السعر عند الهوفر على الكارد */
+.card:hover .price {
+    background: #d7ccc8;
+    border-color: #d4af37; /* يقلب ذهبي عند تمرير الماوس*/
+}
+
+
+/* الحاوية الأساسية */
+.whatsapp {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 60px;
+    height: 60px;
+    background: #25d366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(37,211,102,0.7);
+    z-index: 999;
+    transition: all 0.3s ease;
+}
+
+/* نص "اتصل بنا" المطور */
+.tooltip-text {
+    position: absolute;
+    bottom: 80px; /* المسافة فوق اللوجو */
+    background: #3e2723; /* لون بني ملكي متناسق مع الثيم */
+    color: #f4e1b3; /* لون كريمي */
+    padding: 6px 15px;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    border: 1px solid #d4af37; /* حواف ذهبية ناعمة */
+}
+
+/* السهم الصغير أسفل النص */
+.tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 7px;
+    border-style: solid;
+    border-color: #3e2723 transparent transparent transparent;
+}
+
+/* حركة الظهور عند تمرير الماوس */
+.whatsapp:hover .tooltip-text {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* حركة نبض خفيفة للزر بالكامل لجذب الانتباه */
+.whatsapp:hover {
+    transform: scale(1.1);
+}
+
+.whatsapp img{
+  width:32px;
+  height:32px;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(37,211,102, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(37,211,102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37,211,102, 0); }
+}
+
+footer {
+    background: #2d1b18; /* بني داكن جداً ملكي */
+    position: relative;
+    padding-top: 80px;
+    color: #f4e1b3;
+    overflow: hidden;
+}
+
+/* حركة التموج في أعلى الفوتر */
+.footer-wave {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: linear-gradient(to bottom, transparent, rgba(212, 175, 55, 0.05));
+    border-top: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 250px;
+    text-align: center;
+}
+
+.footer-bio {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    margin-top: 15px;
+    opacity: 0.8;
+}
+
+/* كرت التواصل التفاعلي */
+.contact-card {
+    background: rgba(212, 175, 55, 0.1);
+    border: 1px dashed var(--accent-color);
+    padding: 15px 25px;
+    border-radius: 15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 15px;
+}
+
+.contact-card:hover {
+    background: var(--accent-color);
+    color: #3e2723;
+    transform: translateY(-5px);
+    border-style: solid;
+}
+
+.contact-icon {
+    font-size: 1.5rem;
+}
+
+.contact-card span {
+    display: block;
+    font-size: 0.75rem;
+    opacity: 0.8;
+}
+
+.footer-copyright {
+    margin-top: 50px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.2);
+    font-size: 0.85rem;
+    text-align: center;
+    border-top: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.footer-copyright span {
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+/* شاشة التحميل بالكامل */
+#loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #3d2b1f; /* لون الهيدر */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* ليكون فوق كل شيء */
+    transition: opacity 0.5s ease, visibility 0.5s;
+}
+
+.loader-content {
+    text-align: center;
+}
+
+/* نص اللوجو اللماع داخل التحميل */
+.loader-text {
+    /* تطبيق خط الرقعة */
+    font-family: 'Aref Ruqaa', serif; 
+    
+    font-size: 3.5rem; /* خط الرقعة يفضل أن يكون كبيراً ليظهر جماله */
+    font-weight: 700;
+    margin-bottom: 10px;
+    
+    /* الحركات والبركات الذهبية اللي اتفقنا عليها */
+    background: linear-gradient(90deg, #d4af37, #fff5d7, #d4af37);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: goldShine 3s linear infinite;
+}
+
+/* تعديل بسيط للنسبة المئوية لتكون متناسقة تحت الخط */
+.loader-percentage {
+    font-family: 'Cairo', sans-serif; /* نبقي الأرقام بخط بسيط وواضح */
+    color: #d4af37;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+}
+
+
+/* شريط التحميل */
+.loader-bar {
+    width: 150px;
+    height: 3px;
+    background: rgba(212, 175, 55, 0.2);
+    border-radius: 5px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.loader-bar::after {
+    content: '';
+    position: absolute;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: #d4af37;
+    animation: loadingProgress 1.5s infinite;
+}
+
+@keyframes loadingProgress {
+    0% { left: -100%; }
+    50% { left: 0; }
+    100% { left: 100%; }
+}
+
+/* إخفاء اللودر */
+.loader-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
