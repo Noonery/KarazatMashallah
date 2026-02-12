@@ -1,5 +1,19 @@
+
 /* استيراد خط القاهرة بشكل صحيح */
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap');
+
+/* حل مشكلة الفراغ الجانبي ومنع التمرير الأفقي */
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    overflow-x: hidden; /* يمنع ظهور أي مساحة زائدة جهة اليمين أو اليسار */
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 
 :root {
     --primary-color: #4a2c1d;   /* بني شوكولاتة */
