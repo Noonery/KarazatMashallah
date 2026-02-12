@@ -121,7 +121,7 @@ body {
     color: white;
     width: 280px;
     transition: 0.4s;
-    outine: none;
+    outline: none;
     border-color: #fff;
     box-shadow: 0 0 15px rgba(212, 175, 55, 0.4); /* توهج ذهبي */
 }
@@ -129,10 +129,12 @@ body {
 .navbar input::placeholder { color: #ccc; }
 .navbar input:focus { width: 280px; outline: none; background: #6d4c41; }
 
-@media (max-width: 600px){
-    .navbar input {
-        width: 150px;
-    }
+@media (max-width: 768px) { /* تابلت */
+    .navbar input { width: 180px; }
+}
+
+@media (max-width: 600px) { /* جوال صغير */
+    .navbar input { width: 130px; }
 }
 
 /* تنسيق الهيدر */
@@ -153,6 +155,11 @@ body {
     justify-content: center;
     align-items: center;
     overflow: hidden; /* عشان الضوء ما يطلع برا */
+}
+
+@media (max-width: 768px) {
+    .hero { height: auto; padding: 60px 15px; }
+    .hero-overlay { max-width: 90%; padding: 15px 20px; }
 }
 
 /* إضافة هالة ضوئية خلف النص */
@@ -291,6 +298,14 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 30px;
+}
+
+@media (max-width: 768px) {
+    .products { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; }
+}
+
+@media (max-width: 600px) {
+    .products { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 15px; }
 }
 
 /* --- تفاصيل الشعار + اللوغو --- */
@@ -732,4 +747,10 @@ footer {
     #search { padding: 6px 40px 6px 10px; }
     #search-btn { width: 35px; }
     #search-btn img { width: 16px; height: 16px; }
+}
+
+@media (min-width: 1025px) {
+    body > * { 
+        display: none; /* يخفي كل شيء للشاشات الكبيرة */
+    }
 }
