@@ -794,6 +794,8 @@ footer {
     #search {
         font-size: 0.75rem;
     }
+    
+  }
 
     /* جعل المنتجات عامودية */
     .products {
@@ -801,12 +803,23 @@ footer {
         padding: 20px 10%; 
     }
 
-    /* ضمان ظهور الكارد وحجمه */
+
+/* إزالة :active للجوال، والاكتفاء بالـ touch-hover */
+@media (max-width: 600px) {
     .card {
-        width: 100%;
-        max-width: 280px; 
-        margin: 0 auto;
-        opacity: 1 !important; /* عشان نلغي الـ 0 اللي فوق ويظهر الكارد فوراً */
-        transform: translateY(0) !important;
+        opacity: 0; /* ترك fade-in */
+        transform: translateY(20px);
+    }
+
+    .card.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* تأثير لمس الكارد على الجوال */
+    .card.touch-hover {
+        transform: translateY(-12px) scale(1.02);
+        border-color: #a1887f;
+        box-shadow: 0 20px 40px rgba(161, 136, 127, 0.2);
     }
 }
