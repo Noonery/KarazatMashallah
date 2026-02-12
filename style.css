@@ -2,23 +2,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap');
 
 :root {
-    --primary-color: #3e2723;
-    --accent-color: #d4af37;
-    --bg-color: #f4f1ee;
-    --card-bg: #ffffff;
-    --text-main: #2d1b18;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    --primary-color: #4a2c1d;   /* بني شوكولاتة */
+    --accent-color: #d4af37;   /* ذهبي */
+    --bg-color: #f7efe6;       /* كريمي حليب */
+    --card-bg: #fffaf3;       /* أبيض حليبي */
+    --text-main: #2b1a12;     /* بني غامق للنص */
 }
 
 body {
     font-family: 'Cairo', sans-serif;
-    background: linear-gradient(180deg, #3d2b1f 0%, #fdfcfb 40%, #f5eee6 100%);
-    background-attachment: fixed;/* يخلي الخلفية ثابتة والكاردات تتحرك فوقها */
+    background: linear-gradient(
+        180deg,
+        #3a2418 0%,   /* نفس لون الهيرو */
+        #6b4a2f 30%,
+        #f4e7d7 65%,
+        #fffaf3 100%
+    );
+    background-attachment: fixed;
     margin: 0;
     padding: 0;
 }
@@ -103,12 +103,13 @@ body {
 }
 
 /* تحسين للجوال */
-@media (max-width: 600px) {
+@media (max-width: 600px){
     .navbar input {
-        width: 140px !important;
+        width: 110px;
+        transition: 0.3s;
     }
-    .nav-item {
-        font-size: 0.85rem;
+    .navbar input:focus {
+        width: 150px; /* تكبر لما يضغط */
     }
 }
 
@@ -279,12 +280,17 @@ body {
     }
 }
 
-/* Products Grid */
 .products {
+    background: linear-gradient(
+        180deg,
+        #f4e7d7 0%,
+        #fff3e6 60%,
+        #fffaf3 100%
+    );
+    padding: 40px 5%;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 30px;
-    padding: 40px 5%;
 }
 
 /* --- تفاصيل الشعار + اللوغو --- */
@@ -316,24 +322,28 @@ body {
 /* --- تفاصيل المنتج المحدثة --- */
 .card {
     background: var(--card-bg);
-    /* حواف دائرية متناسقة */
     border-radius: 20px;
     overflow: hidden;
-    /* حواف بلون بني فاتح هادئ */
     border: 1.5px solid #d7ccc8; 
     box-shadow: 0 8px 15px rgba(0,0,0,0.03);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* حركة انسيابية مرنة */
     text-align: center;
     position: relative;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    opacity: 0;
+    transform: translateY(20px); /* يبدأ من أسفل عند التحميل */
 }
 
-/* --- تأثير الهوفر (اللمسة السحرية) --- */
+/* ظهور الكارد تدريجياً */
+.card.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* تأثير الهوفر */
 .card:hover {
-    transform: translateY(-12px) scale(1.02); /* ترتفع وتكبر قليلاً */
-    /* الحواف تصبح أغمق قليلاً عند الهوفر */
-    border-color: #a1887f; 
-    /* ظل أعمق يعطي إيحاء بالارتفاع */
-    box-shadow: 0 20px 40px rgba(161, 136, 127, 0.2); 
+    transform: translateY(-12px) scale(1.02);
+    border-color: #a1887f;
+    box-shadow: 0 20px 40px rgba(161, 136, 127, 0.2);
 }
 
 .card img { 
@@ -577,11 +587,12 @@ footer {
 
 /* عداد النسبة المئوية */
 .loader-percentage {
-    font-family: 'Cairo', sans-serif;
-    color: #fff;
-    font-size: 1.2rem;
-    font-weight: bold;
+    font-family: 'Roboto Mono', monospace; /* خط رقمي أنيق */
+    color: #d4af37; /* ذهبي لامع */
+    font-size: 1.5rem;
+    font-weight: 700;
     margin-bottom: 15px;
+    text-shadow: 0 2px 8px rgba(212, 175, 55, 0.5); /* يعطي لمعان خفيف */
 }
 
 /* شريط التحميل */
@@ -625,4 +636,100 @@ footer {
 @media (max-width: 600px) {
     .loader-text { font-size: 2.5rem; }
     .loader-bar-container { width: 180px; }
+}
+
+/* ===== Tabs الأقسام ===== */
+.category-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 40px 0 10px;
+    flex-wrap: wrap;
+}
+
+.tab {
+    background: rgba(62, 39, 35, 0.9);
+    color: #d4af37;
+    border: 1px solid rgba(212,175,55,0.4);
+    padding: 10px 25px;
+    border-radius: 25px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.tab:hover {
+    background: #d4af37;
+    color: #3e2723;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(212,175,55,0.4);
+}
+
+.tab.active {
+    background: linear-gradient(90deg, #d4af37, #fff5d7);
+    color: #3e2723;
+    box-shadow: 0 0 20px rgba(212,175,55,0.7);
+    border-color: #fff;
+}
+
+/* حاوية البحث */
+.search-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 280px; /* يمكنك تغييره حسب الناف بار */
+}
+
+/* خانة البحث */
+#search {
+    width: 100%;
+    padding: 8px 45px 8px 15px; /* مساحة للزر على اليمين */
+    border-radius: 20px;
+    border: 1px solid #d4af37;
+    background: #6d4c41;
+    color: white;
+    transition: 0.4s;
+}
+
+#search::placeholder {
+    color: #fff5d7;
+}
+
+/* زر البحث يغطي المسافة من اليمين */
+#search-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 40px; /* أو 45px لتغطية المسافة بالكامل */
+    background: #d4af37;
+    border: none;
+    border-radius: 0 20px 20px 0; /* الحافة اليمنى مستديرة مع الـ input */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+#search-btn img {
+    width: 18px;
+    height: 18px;
+}
+
+#search-btn:hover {
+    transform: scale(1);
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.7);
+}
+
+/* الجوال */
+@media (max-width: 600px){
+    .search-container { max-width: 150px; }
+    #search { padding: 6px 40px 6px 10px; }
+    #search-btn { width: 35px; }
+    #search-btn img { width: 16px; height: 16px; }
 }

@@ -41,21 +41,62 @@ window.addEventListener("load", async function() {
 });
 
 const productsData = [
-    {name:"حَب عباد الشمس", price:6000, img:"images/seeds.jpg", desc:"محمص طازج ومقرمش، مثالي للتسلية"},
-    {name:"فستق حلبي (مملح)", price:18000, img:"images/pistachio1.jpg", desc:"فستق فاخر بطعم متوازن ولذيذ"},
-    {name:"فستق حلبي (حامض)", price:18000, img:"images/pistachio2.jpg", desc:"نكهة حامضة منعشة تفتح النفس"},
-    {name:"كاجو محمص", price:16000, img:"images/cashew.jpg", desc:"كاجو محمص طازج، طعمه لذيذ وسلس"}
+    // ===== المكسرات =====
+    {category:"المكسرات", name:"حَب عباد الشمس", price:6000, img:"images/seeds.jpg", desc:"محمص طازج ومقرمش"},
+    {category:"المكسرات", name:"كاجو محمص", price:16000, img:"images/cashew.jpg", desc:"كاجو فاخر محمص"},
+    {category:"المكسرات", name:"فستق حلبي (مملح)", price:18000, img:"images/pistachio1.jpg", desc:"فستق فاخر مملح"},
+    {category:"المكسرات", name:"فستق حلبي (حامض)", price:18000, img:"images/pistachio2.jpg", desc:"فستق بنكهة حامضة"},
+    {category:"المكسرات", name:"لوز مملح", price:13000, img:"images/almond1.jpg", desc:"لوز مقرمش مملح"},
+    {category:"المكسرات", name:"لوز فاهي", price:13000, img:"images/almond2.jpg", desc:"لوز بدون ملح"},
+    {category:"المكسرات", name:"حَب ابيض (مملح)", price:8000, img:"images/white1.jpg", desc:"حب أبيض مملح"},
+    {category:"المكسرات", name:"حَب ابيض (فاهي)", price:8000, img:"images/white2.jpg", desc:"حب أبيض بدون ملح"},
+    {category:"المكسرات", name:"حَب احمر", price:9000, img:"images/red.jpg", desc:"حب أحمر طازج"},
+    {category:"المكسرات", name:"حَب مصري (مملح)", price:6000, img:"images/masri1.jpg", desc:"حب مصري مملح"},
+    {category:"المكسرات", name:"حَب مصري (حامض)", price:6000, img:"images/masri2.jpg", desc:"حب مصري حامض"},
+    {category:"المكسرات", name:"فستق عبيد (محمص ومملح)", price:5000, img:"images/abeed1.jpg", desc:"فستق عبيد مملح"},
+    {category:"المكسرات", name:"فستق عبيد (حامض)", price:5000, img:"images/abeed2.jpg", desc:"فستق عبيد حامض"},
+    {category:"المكسرات", name:"فستق عبيد (مغلف وحامض)", price:5000, img:"images/abeed3.jpg", desc:"فستق مغلف حامض"},
+    {category:"المكسرات", name:"حمص صغير (محمص)", price:5000, img:"images/chickpeas.jpg", desc:"حمص مقرمش"},
+    {category:"المكسرات", name:"ذرة منكهة", price:5000, img:"images/corn.jpg", desc:"ذرة بنكهة خاصة"},
+    {category:"المكسرات", name:"حَب گرع", price:9000, img:"images/pumpkin.jpg", desc:"حب گرع طازج"},
+    {category:"المكسرات", name:"قوز امريكي (غير مغلف)", price:12000, img:"images/pecan1.jpg", desc:"قوز أمريكي طبيعي"},
+    {category:"المكسرات", name:"قوز امريكي (مغلف)", price:6000, img:"images/pecan2.jpg", desc:"قوز أمريكي مغلف"},
+
+    // ===== الحلويات =====
+    {category:"الحلويات", name:"جكليت حليب", price:8000, img:"images/choco1.jpg", desc:"طعم الحليب الأصلي"},
+    {category:"الحلويات", name:"جكليت فواكه", price:7500, img:"images/choco2.jpg", desc:"طعم فواكه مع حموضة"},
+    {category:"الحلويات", name:"جكليت جيلاتين", price:6000, img:"images/choco3.jpg", desc:"يوجد بكافة الأطعمة"},
+    {category:"الحلويات", name:"جكليت كويتي", price:6000, img:"images/choco4.jpg", desc:"جكليت كويتي فاخر"},
+    {category:"الحلويات", name:"جكليت كاكاو (نوتيلا)", price:10000, img:"images/nutella.jpg", desc:"كاكاو نوتيلا"},
+    {category:"الحلويات", name:"جكليت كاكاو (حليب)", price:10000, img:"images/milk.jpg", desc:"كاكاو بالحليب"},
+    {category:"الحلويات", name:"جكليت تمر الدين", price:4000, img:"images/tamr.jpg", desc:"كمية محدودة"},
+    {category:"الحلويات", name:"كاكاو اصابع", price:6000, img:"images/sticks1.jpg", desc:"أصابع كاكاو"},
+    {category:"الحلويات", name:"حليب اصابع", price:6000, img:"images/sticks2.jpg", desc:"أصابع حليب"},
+    {category:"الحلويات", name:"جيلاتين", price:6000, img:"images/jelly.jpg", desc:"بكافة الأنواع"},
+    {category:"الحلويات", name:"قرص نعناع", price:4000, img:"images/mint.jpg", desc:"منعش"},
+    {category:"الحلويات", name:"بقلاوة", price:6000, img:"images/baklava.jpg", desc:"بقلاوة طازجة"},
+    {category:"الحلويات", name:"دهين نجفي", price:4000, img:"images/dahin.jpg", desc:"كمية محدودة"},
+
+    // ===== منتجات أخرى =====
+    {category:"منتجات أخرى", name:"جبس كرادة", price:10000, img:"images/chips.jpg", desc:"جبس كرادة الأصلي"},
+    {category:"منتجات أخرى", name:"فستق مقرمش", price:6000, img:"images/crispy.jpg", desc:"بكافة الأنواع"},
+    {category:"منتجات أخرى", name:"تمر هندي (علبة)", price:3000, img:"images/tamarind1.jpg", desc:"علبة كبيرة"},
+    {category:"منتجات أخرى", name:"تمر هندي صغير", price:750, img:"images/tamarind2.jpg", desc:" حجم صغير وملفوف"},
+    {category:"منتجات أخرى", name:"تمر هندي (مسطح)", price:500, img:"images/tamarind3.jpg", desc:"حامض وطيب"}
 ];
 
+// العناصر الرئيسية
 const productsEl = document.getElementById("products");
 const searchInput = document.getElementById("search");
 
+// عرض المنتجات
 function renderProducts(list) {
     productsEl.innerHTML = "";
+
     list.forEach((p, index) => {
         const card = document.createElement("div");
         card.className = "card";
-        card.style.animationDelay = `${index * 0.1}s`; // حركة ظهور متسلسلة
+        card.style.animationDelay = `${index * 0.05}s`;
         card.innerHTML = `
             <img src="${p.img}" alt="${p.name}">
             <div class="card-content">
@@ -66,31 +107,37 @@ function renderProducts(list) {
         `;
         productsEl.appendChild(card);
     });
+
+    // إضافة الحركة تدريجياً
+    const cards = document.querySelectorAll('.card');
+    cards.forEach((card, index) => {
+        setTimeout(() => {
+            card.classList.add('show');
+        }, index * 100);
+    });
 }
 
 // دالة البحث
 searchInput.addEventListener("input", (e) => {
-    const term = e.target.value.toLowerCase();
-    const filtered = productsData.filter(p => p.name.includes(term));
+    const term = e.target.value.toLowerCase().trim(); // إزالة الفراغات والحروف الكبيرة
+    const filtered = productsData.filter(p => p.name.toLowerCase().includes(term));
     renderProducts(filtered);
 });
 
-// دالة الواتساب (مراسلة)
+// دالة الواتساب
 function openWhatsApp() {
     const phone = "9647735514122"; 
     const msg = "مرحباً كرزات ما شاء الله، أود الطلب من قائمة المكسرات.";
     window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, "_blank");
 }
 
-// دالة الاتصال (اتصال هاتف)
+// دالة الاتصال
 function openCall() {
     const phone = "07735514122"; 
     window.location.href = `tel:${phone}`;
 }
 
-// التحميل الأولي
-renderProducts(productsData);
-
+// اللودر
 window.addEventListener('load', function() {
     let progress = 0;
     const bar = document.getElementById('load-bar');
@@ -98,12 +145,10 @@ window.addEventListener('load', function() {
     const loader = document.getElementById('loader');
 
     const interval = setInterval(() => {
-        progress += Math.floor(Math.random() * 10) + 1; // زيادة عشوائية
+        progress += Math.floor(Math.random() * 10) + 1;
         if (progress >= 100) {
             progress = 100;
             clearInterval(interval);
-            
-            // إخفاء اللودر بعد اكتمال التحميل
             setTimeout(() => {
                 loader.classList.add('loader-hidden');
             }, 500);
@@ -111,4 +156,20 @@ window.addEventListener('load', function() {
         bar.style.width = progress + '%';
         pc.innerText = progress + '%';
     }, 100);
+});
+
+// التحميل الأولي للمنتجات
+renderProducts(productsData);
+
+// التعامل مع الأقسام (Tabs)
+const tabs = document.querySelectorAll('.tab');
+tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        const category = tab.getAttribute('data-cat');
+        let filteredProducts = category === "all" ? productsData : productsData.filter(p => p.category === category);
+        renderProducts(filteredProducts);
+    });
 });
