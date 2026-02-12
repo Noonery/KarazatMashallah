@@ -102,8 +102,6 @@ body {
     text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
 }
 
-}
-
 .navbar input {
     padding: 8px 15px;
     border-radius: 20px;
@@ -748,5 +746,53 @@ footer {
 @media (min-width: 1025px) {
     body > * { 
         display: none; /* يخفي كل شيء للشاشات الكبيرة */
+    }
+}
+
+/* =============================================
+   أكواد التجاوب - توضع في نهاية الملف تماماً
+   ============================================= */
+
+/* للتابلت: يعرض حبتين بجانب بعض */
+@media (max-width: 1024px) {
+    .nav-main-row {
+        gap: 15px; 
+    }
+    .search-container {
+        max-width: 200px; 
+    }
+    .products {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 20px;
+    }
+}
+
+/* للجوال: يعرض المنتجات بشكل عامودي (واحد تحت الثاني) */
+@media (max-width: 600px) {
+    /* تنسيق البحث واللوجو */
+    .nav-main-row {
+        justify-content: space-between;
+        gap: 5px;
+    }
+    .search-container {
+        max-width: 130px; 
+    }
+    #search {
+        font-size: 0.75rem;
+    }
+
+    /* جعل المنتجات عامودية */
+    .products {
+        grid-template-columns: 1fr !important; /* هذا السطر هو المسؤول عن الشكل العامودي */
+        padding: 20px 10%; 
+    }
+
+    /* ضمان ظهور الكارد وحجمه */
+    .card {
+        width: 100%;
+        max-width: 280px; 
+        margin: 0 auto;
+        opacity: 1 !important; /* عشان نلغي الـ 0 اللي فوق ويظهر الكارد فوراً */
+        transform: translateY(0) !important;
     }
 }
