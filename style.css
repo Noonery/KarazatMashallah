@@ -102,15 +102,6 @@ body {
     text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
 }
 
-/* تحسين للجوال */
-@media (max-width: 600px){
-    .navbar input {
-        width: 110px;
-        transition: 0.3s;
-    }
-    .navbar input:focus {
-        width: 150px; /* تكبر لما يضغط */
-    }
 }
 
 .navbar input {
@@ -119,22 +110,27 @@ body {
     border: 1px solid var(--accent-color);
     background: #6d4c41;
     color: white;
-    width: 280px;
-    transition: 0.4s;
+    width: 180px; /* حجم افتراضي أصغر */
+    transition: width 0.4s ease;
     outline: none;
-    border-color: #fff;
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.4); /* توهج ذهبي */
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
 }
 
-.navbar input::placeholder { color: #ccc; }
-.navbar input:focus { width: 280px; outline: none; background: #6d4c41; }
-
-@media (max-width: 768px) { /* تابلت */
-    .navbar input { width: 180px; }
+.navbar input:focus {
+    width: 220px; /* يكبر شوي بس مو كثير */
+    background: #6d4c41;
 }
 
-@media (max-width: 600px) { /* جوال صغير */
-    .navbar input { width: 130px; }
+/* شاشات التابلت */
+@media (max-width: 768px) {
+    .navbar input { width: 150px; }
+    .navbar input:focus { width: 180px; }
+}
+
+/* شاشات الجوال الصغير */
+@media (max-width: 600px) {
+    .navbar input { width: 120px; }
+    .navbar input:focus { width: 140px; }
 }
 
 /* تنسيق الهيدر */
