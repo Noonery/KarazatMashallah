@@ -37,6 +37,11 @@ body {
     padding: 0;
 }
 
+body.loading {
+    overflow: hidden;  /* يمنع التمرير */
+    height: 100vh;     /* يغلق أي تمرير رأسي */
+}
+
 /* الحاوية للنصوص في الهيدر */
 .logo-text-container {
     display: flex;
@@ -757,12 +762,6 @@ footer {
     #search-btn img { width: 16px; height: 16px; }
 }
 
-@media (min-width: 1025px) {
-    body > * { 
-        display: none; /* يخفي كل شيء للشاشات الكبيرة */
-    }
-}
-
 /* =============================================
    أكواد التجاوب - توضع في نهاية الملف تماماً
    ============================================= */
@@ -822,4 +821,95 @@ footer {
         border-color: #a1887f;
         box-shadow: 0 20px 40px rgba(161, 136, 127, 0.2);
     }
+}
+
+#scrollBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background: #d4af37;
+  width: 0%;
+  z-index: 1000;
+}
+
+.tiktok-link {
+    color: #d4af37; /* ذهبي */
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.tiktok-link:hover {
+    text-decoration: underline;
+    color: #ffcc00;
+}
+
+#backToTop {
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #d4af37, #fff3c4);
+  border: 2px solid #fff5cc;   /* بوردر خارجي */
+  outline: 2px solid #d4af37;  /* بوردر ثاني */
+  outline-offset: 2px;
+  
+  color: #3e2723;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  font-size: 1.8rem;  /* السهم أكبر */
+  font-weight: 900;   /* أثخن */
+  
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px) scale(0.8);
+  transition: all 0.4s ease;
+  
+  box-shadow: 
+    0 5px 20px rgba(212,175,55,0.6),
+    inset 0 0 10px rgba(255,255,255,0.7);
+  z-index: 999;
+}
+
+#backToTop.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+#backToTop:hover {
+  transform: scale(1.2);
+  box-shadow: 
+    0 0 30px rgba(212,175,55,1),
+    0 0 60px rgba(212,175,55,0.6);
+}
+
+/* نبض ذهبي */
+#backToTop::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  animation: backPulse 2s infinite;
+}
+
+@keyframes backPulse {
+  0% { box-shadow: 0 0 0 0 rgba(212,175,55,0.8); }
+  70% { box-shadow: 0 0 0 18px rgba(212,175,55,0); }
+  100% { box-shadow: 0 0 0 0 rgba(212,175,55,0); }
+}
+
+/* للجوال */
+@media (max-width:600px){
+  #backToTop{
+    width: 48px;
+    height: 48px;
+    font-size: 1.6rem;
+    bottom: 85px;
+  }
 }

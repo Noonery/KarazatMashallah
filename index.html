@@ -9,12 +9,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="loading">
 
 <div id="loader">
     <div class="loader-content">
         <div class="loader-logo-wrap">
-            <h1 class="loader-text">كرزات ما شاء الله</h1>
+            <h1 class="loader-text">كرزات ماشاء الله</h1>
             <div class="loader-shine"></div>
         </div>
         
@@ -28,6 +28,7 @@
     </div>
 </div>
 
+<div id="scrollBar"></div>
 
 <!-- Navbar -->
 <nav class="navbar">
@@ -74,6 +75,10 @@
     <button class="tab" data-cat="منتجات أخرى">منتجات أخرى</button>
 </div>
 
+<div id="no-results" style="display:none; text-align:center; margin:30px; color:#8d6e63; font-weight:bold;">
+    لا يوجد هذا المنتج في القسم المُحدد
+</div>
+
 <!-- المنتجات -->
 <section class="products" id="products">
 </section>
@@ -98,16 +103,34 @@
         </div>
     </div>
     
-    <div class="footer-copyright">
-        <p>© 2026 جميع الحقوق محفوظة لـ <span>كرزات ماشاء الله</span></p>
-    </div>
-</footer>
-
+<div class="footer-copyright">
+    <p>© 2026 جميع الحقوق محفوظة لـ 
+        <a href="https://www.tiktok.com/@grz.15" target="_blank" class="tiktok-link">
+            كرزات ماشاء الله
+        </a>
+    </p>
+</div>
 
 <!-- WhatsApp Button -->
 <div class="whatsapp" onclick="openCall()">
     <span class="tooltip-text">اتصل بنا</span>
     <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png" alt="واتساب">
+</div>
+
+
+
+<script>
+window.addEventListener('scroll', () => {
+  const scrolled = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+  document.getElementById('scrollBar').style.width = scrolled + '%';
+});
+</script>
+
+<div id="backToTop">
+  <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 19V5"></path>
+    <path d="M5 12l7-7 7 7"></path>
+  </svg>
 </div>
 
 <script src="script.js"></script>
